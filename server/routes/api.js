@@ -6,7 +6,7 @@ var Message = require('../models/message')
 router.post('/message', function (req, res, next) {
     var { id, name, message } = req.body;
 
-    Message.create({ id, name, message }, (err, data) => {
+    Message.create({ id, name, message, createdAt: Date.now() }, (err, data) => {
         res.status(201).json({
             success: true,
             message: "data have been added",

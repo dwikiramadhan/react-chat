@@ -13,6 +13,15 @@ body {
   }
 }
 
+.p-2 {
+  padding: 0px !important
+}
+
+.btnResend {
+  background: none;
+  border: none;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -53,7 +62,7 @@ body {
   width: 5px;
   background: #d9e0e7;
   left: 20%;
-  margin-left: -2.5px
+  margin-left: -2.5px;
 }
 
 .timeline>li {
@@ -65,7 +74,7 @@ body {
 .timeline .timeline-time {
   position: absolute;
   left: 0;
-  width: 18%;
+  width: 17%;
   text-align: right;
   top: 30px
 }
@@ -124,7 +133,7 @@ body {
   border: 10px solid transparent;
   border-right-color: #fff;
   left: -20px;
-  top: 20px
+  top: 20px;
 }
 
 .timeline .timeline-body>div+div {

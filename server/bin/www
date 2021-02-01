@@ -21,13 +21,36 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+const connectSocket = server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+const io = require('socket.io')(connectSocket, {
+  cors: {
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST"]
+  }
+});
+
+io.on('connection', socket => {
+  console.log('a user connected', socket.id);
+
+  socket.on('test', function () {
+    console.log('berhasil donk')
+  });
+  socket.on('chat', function (data) {
+    console.log("dengerin chat: ", data)
+    socket.broadcast.emit('loadChat');
+  });
+})
+
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+// server.listen(port);
+// server.on('error', onError);
+// server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.

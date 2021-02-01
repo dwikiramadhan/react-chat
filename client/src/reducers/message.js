@@ -1,4 +1,7 @@
 import Swal from 'sweetalert2';
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:3000");
 
 const message = (state = [], action) => {
     switch (action.type) {
@@ -33,6 +36,17 @@ const message = (state = [], action) => {
                 }
                 return item
             });
+
+        case 'LOAD_MESSAGE_SUCCESS':
+            return action.data.data.map((item) => {
+                item.sent = true;
+                // socket.emit('chat', item);
+                // console.log(item)
+                return item
+            })
+
+        case 'LOAD_MESSAGE_FAILURE':
+            return state;
 
         default:
             return state;
