@@ -7,11 +7,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import rootReducer from './reducers';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas/messages';
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const sagaMiddleware = createSagaMiddleware();
+const enhancer = compose(applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, enhancer);
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

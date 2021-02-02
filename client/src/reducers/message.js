@@ -1,7 +1,4 @@
 import Swal from 'sweetalert2';
-import { io } from "socket.io-client";
-
-const socket = io("http://localhost:3000");
 
 const message = (state = [], action) => {
     switch (action.type) {
@@ -46,6 +43,15 @@ const message = (state = [], action) => {
             })
 
         case 'LOAD_MESSAGE_FAILURE':
+            return state;
+
+        case 'DELETE_MESSAGE':
+            return state.filter(item => item._id !== action.id)
+
+        case 'DElETE_MESSAGE_SUCCESS':
+            return state;
+
+        case 'DElETE_MESSAGE_FAILURE':
             return state;
 
         default:
